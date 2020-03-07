@@ -7,7 +7,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'altercation/vim-colors-solarized'
 Plug 'scrooloose/syntastic'
-Plug 'valloric/youcompleteme'
+"Plug 'valloric/youcompleteme'
 Plug 'jiangmiao/auto-pairs'
 Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
@@ -53,8 +53,10 @@ noremap <leader>pcl :w <bar> :source $MYVIMRC <bar> :PlugClean<CR>
 
 "COMMANDS
 autocmd FileType python nnoremap <buffer> <F9> :exec '!clear; python3' shellescape(@%, 1)<cr>
+command! MakeTags !ctags -R .
 
 "SETTINGS
+set nocompatible
 filetype on
 filetype plugin on
 set mouse=a
