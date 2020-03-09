@@ -35,10 +35,10 @@ noremap <leader>0 :tablast<cr>
 nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
 " Split pane mapping
-noremap <leader>wl <C-w>v<C-w>l
-noremap <leader>wh <C-w>v
-noremap <leader>wj <C-w>s<C-w>j
-noremap <leader>wk <C-w>s
+noremap <leader>wl :vnew<CR><C-w>r
+noremap <leader>wh :vnew<CR>
+noremap <leader>wj :new<CR><C-w>r
+noremap <leader>wk :new<CR>
 noremap <C-l> <C-w>l
 noremap <C-k> <C-w>k
 noremap <C-j> <C-w>j
@@ -59,7 +59,7 @@ command! MakeTags !ctags -R .
 set nocompatible
 filetype on
 filetype plugin on
-set mouse=a
+"set mouse=a
 " Remove sound
 set visualbell
 
