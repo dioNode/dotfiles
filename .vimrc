@@ -16,10 +16,12 @@ Plug 'rrethy/vim-illuminate'
 
 call plug#end()
 
+
 "MAPPING
 let mapleader = "\<Space>"
 nnoremap <leader>rv :source $MYVIMRC<CR>
 nnoremap <leader>ov :tabnew $MYVIMRC<CR>
+nnoremap <leader>ob :tabnew ~/.bashrc<CR>
 nnoremap <leader>oe :!explorer.exe .<CR>
 "Go to tab by number
 noremap <C-n> :tabnew<Space> 
