@@ -1,44 +1,57 @@
-" MY AWESOME VIM SETTINGS
+syntax on
 
-"PLUGINS
+set noerrorbells
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+set nu
+set cursorline
+set relativenumber
+set nowrap
+set smartcase
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+set incsearch
+
+set colorcolumn=80
+highlight ColorColumn ctermbg=0 guibg=lightgrey
+
 call plug#begin('~/.vim/plugged')
 
+Plug 'morhetz/gruvbox'
+Plug 'jremmen/vim-ripgrep'
+Plug 'tpope/vim-fugitive'
+Plug 'leafgarland/typescript-vim'
+Plug 'vim-utils/vim-man'
+Plug 'lyuts/vim-rtags'
+Plug 'kien/ctrlp.vim'
+Plug 'valloric/youcompleteme',{'do':'./install.py'}
+Plug 'mbbill/undotree'
 Plug 'scrooloose/nerdtree'
-Plug 'vim-airline/vim-airline'
-Plug 'altercation/vim-colors-solarized'
-Plug 'scrooloose/syntastic'
-"Plug 'valloric/youcompleteme'
-Plug 'jiangmiao/auto-pairs'
-Plug 'scrooloose/nerdcommenter'
-Plug 'airblade/vim-gitgutter'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'rrethy/vim-illuminate'
-Plug 'junegunn/fzf'
+Plug 'jiangmiao/auto-pairs'
+Plug 'vim-airline/vim-airline'
 
 call plug#end()
 
+colorscheme gruvbox
+set background=dark
 
-"MAPPING
-let mapleader = "\<Space>"
-nnoremap <leader>rv :source $MYVIMRC<CR>
-nnoremap <leader>ov :tabnew $MYVIMRC<CR>
-nnoremap <leader>ob :tabnew ~/.bashrc<CR>
-nnoremap <leader>oe :!explorer.exe .<CR>
-"Go to tab by number
-noremap <C-n> :tabnew<Space> 
-noremap <leader>1 1gt
-noremap <leader>2 2gt
-noremap <leader>3 3gt
-noremap <leader>4 4gt
-noremap <leader>5 5gt
-noremap <leader>6 6gt
-noremap <leader>7 7gt
-noremap <leader>8 8gt
-noremap <leader>9 9gt
-noremap <leader>0 :tablast<cr>
-nnoremap <C-Left> :tabprevious<CR>
-nnoremap <C-Right> :tabnext<CR>
-" Split pane mapping
+if executable('rg')
+    let g:rg_derive_root='true'
+endif
+
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let mapleader = " "
+let g:netrw_browse_split=2
+let g:netrw_banner = 0
+let g:netrw_winsize = 25
+
+let g:ctrlp_use_caching = 0
+
 noremap <leader>wl :vnew<CR><C-w>r
 noremap <leader>wh :vnew<CR>
 noremap <leader>wj :new<CR><C-w>r
@@ -47,40 +60,20 @@ noremap <C-l> <C-w>l
 noremap <C-k> <C-w>k
 noremap <C-j> <C-w>j
 noremap <C-h> <C-w>h
-"General
+nnoremap <leader>u :UndotreeShow<CR>
+nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
+nnoremap <leader>ps :Rg<SPACE>
+nnoremap <silent> <leader>+ :vertical resize +5<CR>
+nnoremap <silent> <leader>- :vertical resize -5<CR>
 noremap <Tab><Tab> :NERDTreeToggle<CR>
-noremap <C-a> <Esc>ggVG
-nmap <C-_> <Plug>NERDCommenterToggle
-vmap <C-_> <Plug>NERDCommenterToggle<CR>gv
-noremap <leader>pin :w <bar> :source $MYVIMRC <bar> :PlugInstall<CR>
-noremap <leader>pcl :w <bar> :source $MYVIMRC <bar> :PlugClean<CR>
 
-"COMMANDS
+" YCM
+nnoremap <silent> <leader>gd :YcmCompleter GoTo<CR>
+nnoremap <silent> <leader>gf :YcmCompleter FixIt<CR>
+
+" Vim Plug
+nnoremap <leader>pin :w <bar> :source $MYVIMRC <bar> :PlugInstall<CR> 
+nnoremap <leader>pcl :w <bar> :source $MYVIMRC <bar> :PlugClean<CR>
+
+" Run command
 autocmd FileType python nnoremap <buffer> <F9> :exec '!clear; python3' shellescape(@%, 1)<cr>
-command! MakeTags !ctags -R .
-
-"SETTINGS
-set nocompatible
-filetype on
-filetype plugin on
-"set mouse=a
-" Remove sound
-set visualbell
-
-"DISPLAY
-syntax enable
-set background=dark
-let g:solarized_termcolors=256
-let g:airline#extensions#tabline#enabled = 1
-colorscheme solarized
-
-set cursorline
-set number
-set relativenumber
-
-if &term =~ '256color'
-	    " Disable Background Color Erase (BCE) so that color schemes
-	    " work properly when Vim is used inside tmux and GNU screen.
-	set t_ut=
-endif
-
