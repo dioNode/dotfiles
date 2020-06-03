@@ -1,3 +1,4 @@
+" MY AWESOME VIMRC FILE
 syntax on
 
 set noerrorbells
@@ -34,6 +35,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'rrethy/vim-illuminate'
 Plug 'jiangmiao/auto-pairs'
 Plug 'vim-airline/vim-airline'
+"Plug 'ThePrimeagen/vim-be-good'
 
 call plug#end()
 
@@ -77,3 +79,7 @@ nnoremap <leader>pcl :w <bar> :source $MYVIMRC <bar> :PlugClean<CR>
 
 " Run command
 autocmd FileType python nnoremap <buffer> <F9> :exec '!clear; python3' shellescape(@%, 1)<cr>
+
+" Lines to save ftext folding
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
