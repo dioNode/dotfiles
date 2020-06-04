@@ -28,14 +28,16 @@ Plug 'tpope/vim-fugitive'
 Plug 'leafgarland/typescript-vim'
 Plug 'vim-utils/vim-man'
 Plug 'lyuts/vim-rtags'
-Plug 'kien/ctrlp.vim'
+"Plug 'kien/ctrlp.vim'
 Plug 'valloric/youcompleteme',{'do':'./install.py'}
 Plug 'mbbill/undotree'
 Plug 'scrooloose/nerdtree'
 Plug 'rrethy/vim-illuminate'
 Plug 'jiangmiao/auto-pairs'
 Plug 'vim-airline/vim-airline'
-"Plug 'ThePrimeagen/vim-be-good'
+Plug 'ThePrimeagen/vim-be-good'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -46,13 +48,13 @@ if executable('rg')
     let g:rg_derive_root='true'
 endif
 
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+" let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let mapleader = " "
-let g:netrw_browse_split=2
-let g:netrw_banner = 0
-let g:netrw_winsize = 25
-
-let g:ctrlp_use_caching = 0
+" let g:netrw_browse_split=2
+" let g:netrw_banner = 0
+" let g:netrw_winsize = 25
+" 
+" let g:ctrlp_use_caching = 0
 
 noremap <leader>wl :vnew<CR><C-w>r
 noremap <leader>wh :vnew<CR>
@@ -83,3 +85,11 @@ autocmd FileType python nnoremap <buffer> <F9> :exec '!clear; python3' shellesca
 " Lines to save ftext folding
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview
+
+" ================================="
+"               FZF                "
+" ================================="
+nnoremap <C-f> <Esc><Esc>:BLines!<CR>
+"nnoremap <c-p> :FZF<CR>
+nnoremap <c-p> :call fzf#vim#files('.', fzf#vim#with_preview('right'))<CR>
+nnoremap <C-g> <Esc><Esc>:BCommits!<CR>
