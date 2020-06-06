@@ -38,6 +38,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'ThePrimeagen/vim-be-good'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
 Plug 'junegunn/fzf.vim'
+" Testing vim snippets
+Plug 'lervag/vimtex'
+Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
 
 call plug#end()
 
@@ -69,7 +72,7 @@ nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 nnoremap <leader>ps :Rg<SPACE>
 nnoremap <silent> <leader>+ :vertical resize +5<CR>
 nnoremap <silent> <leader>- :vertical resize -5<CR>
-noremap <Tab><Tab> :NERDTreeToggle<CR>
+" noremap <Tab><Tab> :NERDTreeToggle<CR>
 
 " YCM
 nnoremap <silent> <leader>gd :YcmCompleter GoTo<CR>
@@ -83,8 +86,14 @@ nnoremap <leader>pcl :w <bar> :source $MYVIMRC <bar> :PlugClean<CR>
 autocmd FileType python nnoremap <buffer> <F9> :exec '!clear; python3' shellescape(@%, 1)<cr>
 
 " Lines to save ftext folding
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview
+augroup AutoSaveFolds
+  autocmd!
+  " view files are about 500 bytes
+  " bufleave but not bufwinleave captures closing 2nd tab
+  " nested is needed by bufwrite* (if triggered via other autocmd)
+  autocmd BufWinLeave,BufLeave,BufWritePost ?* nested silent! mkview!
+  autocmd BufWinEnter ?* silent! loadview
+augroup end
 
 " ================================="
 "               FZF                "
@@ -93,3 +102,13 @@ nnoremap <C-f> <Esc><Esc>:BLines!<CR>
 "nnoremap <c-p> :FZF<CR>
 nnoremap <c-p> :call fzf#vim#files('.', fzf#vim#with_preview('right'))<CR>
 nnoremap <C-g> <Esc><Esc>:BCommits!<CR>
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
