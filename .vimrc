@@ -16,6 +16,7 @@ set nobackup
 set undodir=~/.vim/undodir
 set undofile
 set incsearch
+"set paste
 
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
@@ -38,9 +39,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'ThePrimeagen/vim-be-good'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
 Plug 'junegunn/fzf.vim'
-" Testing vim snippets
 Plug 'lervag/vimtex'
-Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'sirver/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'preservim/nerdcommenter'
 
 call plug#end()
 
@@ -72,7 +74,9 @@ nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 nnoremap <leader>ps :Rg<SPACE>
 nnoremap <silent> <leader>+ :vertical resize +5<CR>
 nnoremap <silent> <leader>- :vertical resize -5<CR>
-" noremap <Tab><Tab> :NERDTreeToggle<CR>
+noremap <Tab><Tab> :NERDTreeToggle<CR>
+nmap <C-_> <Plug>NERDCommenterToggle
+vmap <C-_> <Plug>NERDCommenterToggle<CR>gv
 
 " YCM
 nnoremap <silent> <leader>gd :YcmCompleter GoTo<CR>
