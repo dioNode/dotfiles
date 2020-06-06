@@ -81,7 +81,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
  if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='vim'
+   export EDITOR='nvim'
  else
    export EDITOR='mvim'
  fi
@@ -95,11 +95,11 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="vim ~/.zshrc"
-alias ohmyzsh="vim ~/.oh-my-zsh"
-alias vimconfig="vim ~/.vimrc"
-alias bashconfig="vim ~/.bashrc"
-alias tmuxconfig="vim ~/.tmux.conf"
+alias zshconfig="nvim ~/.zshrc"
+alias ohmyzsh="nvim ~/.oh-my-zsh"
+alias vimconfig="nvim ~/.vimrc"
+alias bashconfig="nvim ~/.bashrc"
+alias tmuxconfig="nvim ~/.tmux.conf"
 alias q="exit"
 
 bindkey '^ ' autosuggest-accept
