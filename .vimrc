@@ -46,6 +46,7 @@ Plug 'preservim/nerdcommenter'
 Plug 'rbgrouleff/bclose.vim' " Ranger dependance for neovim
 Plug 'francoiscabrol/ranger.vim' " Ranger
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
@@ -81,6 +82,11 @@ nnoremap <silent> <leader>- :vertical resize -5<CR>
 nmap <C-_> <Plug>NERDCommenterToggle
 vmap <C-_> <Plug>NERDCommenterToggle<CR>gv
 nnoremap <leader>f :Ranger<CR>
+
+"Git fugitive
+nmap <leader>gs :G<CR>
+nmap <leader>gf :diffget //3<CR>
+nmap <leader>gj :diffget //2<CR>
 
 " YCM
 nnoremap <silent> <leader>gd :YcmCompleter GoTo<CR>
