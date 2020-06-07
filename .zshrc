@@ -102,8 +102,7 @@ alias bashconfig="nvim ~/.bashrc"
 alias tmuxconfig="nvim ~/.tmux.conf"
 alias q="exit"
 alias f="ranger"
-alias udot="cd ~; cp .zshrc dotfiles; cp .vimrc dotfiles; 
-cp .tmux.conf dotfiles; cd dotfiles; git status"
+alias udot="cp /home/dionode/{.zshrc,.vimrc,.tmux.conf} /home/dionode/dotfiles/; cd ~/dotfiles; git status"
 
 #bindkey -v
 bindkey '^ ' autosuggest-accept
