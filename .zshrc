@@ -95,11 +95,11 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="nvim ~/.zshrc"
+alias {zshconf,zshconfig}="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
-alias vimconfig="nvim ~/.vimrc"
-alias bashconfig="nvim ~/.bashrc"
-alias tmuxconfig="nvim ~/.tmux.conf"
+alias {vimconf,vimconfig}="nvim ~/.vimrc"
+alias {bashconf,bashconfig}="nvim ~/.bashrc"
+alias {tmuxconf,tmuxconfig}="nvim ~/.tmux.conf"
 alias q="exit"
 alias f="ranger"
 alias udot="cp /home/dionode/{.zshrc,.vimrc,.tmux.conf} /home/dionode/dotfiles/; cd ~/dotfiles; git status"
