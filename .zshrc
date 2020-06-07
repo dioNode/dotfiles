@@ -83,7 +83,7 @@ source $ZSH/oh-my-zsh.sh
  if [[ -n $SSH_CONNECTION ]]; then
    export EDITOR='nvim'
  else
-   export EDITOR='mvim'
+   export EDITOR='nvim'
  fi
 
 # Compilation flags
@@ -101,7 +101,11 @@ alias vimconfig="nvim ~/.vimrc"
 alias bashconfig="nvim ~/.bashrc"
 alias tmuxconfig="nvim ~/.tmux.conf"
 alias q="exit"
+alias f="ranger"
+alias udot="cd ~; cp .zshrc dotfiles; cp .vimrc dotfiles; 
+cp .tmux.conf dotfiles; cd dotfiles; git status"
 
+#bindkey -v
 bindkey '^ ' autosuggest-accept
 
 source /opt/ros/melodic/setup.zsh

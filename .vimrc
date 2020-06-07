@@ -16,7 +16,7 @@ set nobackup
 set undodir=~/.vim/undodir
 set undofile
 set incsearch
-"set paste
+" set paste
 
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
@@ -32,7 +32,7 @@ Plug 'lyuts/vim-rtags'
 "Plug 'kien/ctrlp.vim'
 Plug 'valloric/youcompleteme',{'do':'./install.py'}
 Plug 'mbbill/undotree'
-Plug 'scrooloose/nerdtree'
+"Plug 'scrooloose/nerdtree'
 Plug 'rrethy/vim-illuminate'
 Plug 'jiangmiao/auto-pairs'
 Plug 'vim-airline/vim-airline'
@@ -43,6 +43,8 @@ Plug 'lervag/vimtex'
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'preservim/nerdcommenter'
+Plug 'rbgrouleff/bclose.vim' " Ranger dependance for neovim
+Plug 'francoiscabrol/ranger.vim' " Ranger
 
 call plug#end()
 
@@ -74,9 +76,10 @@ nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 nnoremap <leader>ps :Rg<SPACE>
 nnoremap <silent> <leader>+ :vertical resize +5<CR>
 nnoremap <silent> <leader>- :vertical resize -5<CR>
-noremap <Tab><Tab> :NERDTreeToggle<CR>
+" noremap <Tab><Tab> :NERDTreeToggle<CR>
 nmap <C-_> <Plug>NERDCommenterToggle
 vmap <C-_> <Plug>NERDCommenterToggle<CR>gv
+nnoremap <leader>f :Ranger<CR>
 
 " YCM
 nnoremap <silent> <leader>gd :YcmCompleter GoTo<CR>
@@ -107,12 +110,19 @@ nnoremap <C-f> <Esc><Esc>:BLines!<CR>
 nnoremap <c-p> :call fzf#vim#files('.', fzf#vim#with_preview('right'))<CR>
 nnoremap <C-g> <Esc><Esc>:BCommits!<CR>
 
+" ================================="
+"           UltiSnips              "
+" ================================="
 " make YCM compatible with UltiSnips (using supertab)
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
 
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:tex_flavor = "latex"
+let g:UltiSnipsEditSplit="vertical"
+nnoremap <leader>es :UltiSnipsEdit<CR>
