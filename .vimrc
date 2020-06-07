@@ -45,6 +45,7 @@ Plug 'honza/vim-snippets'
 Plug 'preservim/nerdcommenter'
 Plug 'rbgrouleff/bclose.vim' " Ranger dependance for neovim
 Plug 'francoiscabrol/ranger.vim' " Ranger
+Plug 'tpope/vim-surround'
 
 call plug#end()
 
