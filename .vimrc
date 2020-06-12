@@ -1,5 +1,6 @@
 " MY AWESOME VIMRC FILE
 syntax on
+filetype plugin indent on
 
 set noerrorbells
 set tabstop=4 softtabstop=4
@@ -36,7 +37,7 @@ Plug 'mbbill/undotree'
 Plug 'rrethy/vim-illuminate'
 Plug 'jiangmiao/auto-pairs'
 Plug 'vim-airline/vim-airline'
-Plug 'ThePrimeagen/vim-be-good'
+Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
 Plug 'junegunn/fzf.vim'
 Plug 'lervag/vimtex'
@@ -47,6 +48,7 @@ Plug 'rbgrouleff/bclose.vim' " Ranger dependance for neovim
 Plug 'francoiscabrol/ranger.vim' " Ranger
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
+Plug 'xuhdev/vim-latex-live-preview', {'for': 'tex'}
 
 call plug#end()
 
@@ -62,7 +64,7 @@ let mapleader = " "
 " let g:netrw_browse_split=2
 " let g:netrw_banner = 0
 " let g:netrw_winsize = 25
-" 
+let g:node_host_prog = '.nvm/versions/node/v12.17.0/bin/neovim-node-host' 
 " let g:ctrlp_use_caching = 0
 
 noremap <leader>wl :vnew<CR><C-w>r
