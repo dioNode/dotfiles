@@ -113,3 +113,10 @@ source /opt/ros/melodic/setup.zsh
 source /opt/wildcat/setup.bash
                                                                                 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# NVM
+export NVM_DIR=~/.nvm
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+# Flutter
+export PATH="$PATH:/home/dionode/Programs/flutter/bin"

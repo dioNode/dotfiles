@@ -33,7 +33,7 @@ Plug 'lyuts/vim-rtags'
 "Plug 'kien/ctrlp.vim'
 Plug 'valloric/youcompleteme',{'do':'./install.py'}
 Plug 'mbbill/undotree'
-"Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 Plug 'rrethy/vim-illuminate'
 Plug 'jiangmiao/auto-pairs'
 Plug 'vim-airline/vim-airline'
@@ -66,6 +66,7 @@ let mapleader = " "
 " let g:netrw_winsize = 25
 let g:node_host_prog = '.nvm/versions/node/v12.17.0/bin/neovim-node-host' 
 " let g:ctrlp_use_caching = 0
+let g:Tex_MultipleCompileFormats='pdf,bib,pdf'
 
 noremap <leader>wl :vnew<CR><C-w>r
 noremap <leader>wh :vnew<CR>
@@ -80,10 +81,14 @@ nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 nnoremap <leader>ps :Rg<SPACE>
 nnoremap <silent> <leader>+ :vertical resize +5<CR>
 nnoremap <silent> <leader>- :vertical resize -5<CR>
-" noremap <Tab><Tab> :NERDTreeToggle<CR>
+ noremap <Tab><Tab> :NERDTreeToggle<CR>
 nmap <C-_> <Plug>NERDCommenterToggle
 vmap <C-_> <Plug>NERDCommenterToggle<CR>gv
 nnoremap <leader>f :Ranger<CR>
+nmap <F12> :LLPStartPreview<cr>
+nnoremap <leader>gcom :Gcommit<CR>
+nnoremap <leader>gpl :Gpull<CR>
+nnoremap <leader>gpu :Gpush<CR>
 
 "Git fugitive
 nmap <leader>gs :G<CR>
