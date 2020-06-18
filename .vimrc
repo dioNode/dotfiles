@@ -69,9 +69,9 @@ let g:node_host_prog = '.nvm/versions/node/v12.17.0/bin/neovim-node-host'
 " let g:ctrlp_use_caching = 0
 let g:Tex_MultipleCompileFormats='pdf,bib,pdf'
 
-noremap <leader>wl :vnew<CR><C-w>r
+noremap <leader>wl :vnew<CR><C-w>L
 noremap <leader>wh :vnew<CR>
-noremap <leader>wj :new<CR><C-w>r
+noremap <leader>wj :new<CR><C-w>J
 noremap <leader>wk :new<CR>
 noremap <C-l> <C-w>l
 noremap <C-k> <C-w>k
