@@ -49,6 +49,7 @@ Plug 'francoiscabrol/ranger.vim' " Ranger
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'xuhdev/vim-latex-live-preview', {'for': 'tex'}
+Plug 'unblevable/quick-scope'
 
 call plug#end()
 
@@ -89,6 +90,7 @@ nmap <F12> :LLPStartPreview<cr>
 nnoremap <leader>gcom :Gcommit<CR>
 nnoremap <leader>gpl :Gpull<CR>
 nnoremap <leader>gpu :Gpush<CR>
+nnoremap <silent> <esc><esc> :nohlsearch<CR>
 
 "Git fugitive
 nmap <leader>gs :G<CR>
@@ -140,3 +142,13 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:tex_flavor = "latex"
 let g:UltiSnipsEditSplit="vertical"
 nnoremap <leader>es :UltiSnipsEdit<CR>
+
+" ================================="
+"           Quickscope             "
+" ================================="
+
+" Trigger a highlight in the appropriate direction when pressing these keys:
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+" Trigger a highlight only when pressing f and F.
+let g:qs_highlight_on_keys = ['f', 'F']
