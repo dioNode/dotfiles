@@ -1,4 +1,4 @@
-if [ "$TMUX" = "" ]; then tmux new -A -s main; fi
+#if [ "$TMUX" = "" ]; then tmux new -A -s main; fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -103,9 +103,10 @@ alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias {vimconf,vimconfig}="nvim ~/.vimrc"
 alias {bashconf,bashconfig}="nvim ~/.bashrc"
 alias {tmuxconf,tmuxconfig}="nvim ~/.tmux.conf"
+alias {i3conf,i3config}="nvim ~/.config/i3/config"
 alias q="exit"
 alias f="ranger"
-alias udot="cp /home/dionode/{.zshrc,.vimrc,.tmux.conf} /home/dionode/dotfiles/;
+alias udot="cp -r /home/dionode/{.zshrc,.vimrc,.tmux.conf,.config/i3} /home/dionode/dotfiles/;
     cd ~/dotfiles; git add .; git status"
 
 #bindkey -v
@@ -139,7 +140,7 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-neofetch
+#neofetch
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
