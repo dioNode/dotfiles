@@ -108,6 +108,7 @@ alias q="exit"
 alias f="ranger"
 alias udot="cp -r /home/dionode/{.zshrc,.vimrc,.tmux.conf,.config/i3} /home/dionode/dotfiles/;
     cd ~/dotfiles; git add .; git status"
+alias vim="nvim"
 
 #bindkey -v
 bindkey '^ ' autosuggest-accept
