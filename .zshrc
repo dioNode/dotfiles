@@ -89,6 +89,8 @@ source $ZSH/oh-my-zsh.sh
    export EDITOR='nvim'
  fi
 
+ #export TERM='i3-sensible-terminal'
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 

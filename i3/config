@@ -27,6 +27,25 @@ font pango:System San Francisco Display 13
 # X core fonts rendering does not support right-to-left and this being a bitmap
 # font, it doesn’t scale on retina/hidpi displays.
 
+# #---Dropdown/Scratchpad windows--# #
+# Tmux window used for background scripts.
+# Later bind to mod+u.
+for_window [instance="dropdown"] floating enable
+for_window [instance="dropdown"] resize set 625 400
+for_window [instance="dropdown"] move scratchpad
+for_window [instance="dropdown"] border pixel 5
+exec --no-startup-id $TERM -n dropdown -e tmux
+
+# Then window running R for basic arithmetic
+# Later bind to mod+a.
+for_window [instance="math"] floating enable
+for_window [instance="math"] resize set 800 300
+for_window [instance="math"] move scratchpad
+for_window [instance="math"] border pixel 5
+exec --no-startup-id $TERM -n math -f mono:pixelsize=24 -e R -q
+
+bindsym $mod+u [instance="dropdown"] scratchpad show; [instance="dropdown"] move position center
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -70,10 +89,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+semicolon split h
+bindsym $mod+backslash split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+minus split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -200,6 +219,10 @@ gaps inner 10
 gaps outer 15
 smart_borders on
 
+exec pulseaudio -k
 exec_always feh --bg-scale /home/dionode/Pictures/jonatan-pie-3l3RwQdHRHg-unsplash.jpg
 exec_always xrandr --output HDMI-1-2 --off --output eDP-1-1 --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1-1 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-1-1 --off --output DP-1-2 --off
+#exec_always compton -f
+#exec_always compton --config ~/.config/compton.conf
 exec_always compton -f
+#exec_always compton --opacity-rule 90:'class_g *= "X-terminal-emulator"'
