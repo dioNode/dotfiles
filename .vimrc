@@ -60,6 +60,12 @@ if executable('rg')
     let g:rg_derive_root='true'
 endif
 
+" =========================================="
+"           Automatic Recompiling           "
+" =========================================="
+"autocmd BufWritePost config.h,config.def.h !sudo make install
+
+
 " let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let mapleader = " "
 " let g:netrw_browse_split=2
