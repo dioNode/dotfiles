@@ -40,8 +40,8 @@ for_window [instance="dropdown"] floating enable
 for_window [instance="dropdown"] resize set 625 400
 for_window [instance="dropdown"] move scratchpad
 for_window [instance="dropdown"] border pixel 5
-#exec--no-startup-id termite --name dropdown -e "$SHELL -ic tmux"
-exec--no-startup-id termite --name dropdown
+exec--no-startup-id termite --name dropdown -e "$SHELL -ic tmux"
+#exec--no-startup-id termite --name dropdown
 
 # Then window running R for basic arithmetic
 # Later bind to mod+a.

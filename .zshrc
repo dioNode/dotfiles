@@ -106,6 +106,7 @@ alias {vimconf,vimconfig}="nvim ~/.vimrc"
 alias {bashconf,bashconfig}="nvim ~/.bashrc"
 alias {tmuxconf,tmuxconfig}="nvim ~/.tmux.conf"
 alias {i3conf,i3config}="nvim ~/.config/i3/config"
+alias {barconf,barconfig}="nvim ~/.config/i3/i3blocks.conf"
 alias q="exit"
 alias f="ranger"
 alias udot="cp -r /home/dionode/{.zshrc,.vimrc,.tmux.conf,.config/i3} /home/dionode/dotfiles/;
