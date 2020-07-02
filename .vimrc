@@ -1,7 +1,13 @@
-" MY AWESOME VIMRC FILE
+ "_____  _             _      __      ___                    
+ "|  __ \(_)           ( )     \ \    / (_)                   
+ "| |  | |_  ___  _ __ |/ ___   \ \  / / _ _ __ ___  _ __ ___ 
+ "| |  | | |/ _ \| '_ \  / __|   \ \/ / | | '_ ` _ \| '__/ __|
+ "| |__| | | (_) | | | | \__ \    \  /  | | | | | | | | | (__ 
+ "|_____/|_|\___/|_| |_| |___/     \/   |_|_| |_| |_|_|  \___|
+
+" Settings
 syntax on
 filetype plugin indent on
-
 set noerrorbells
 set tabstop=4 softtabstop=4
 set shiftwidth=4
@@ -18,10 +24,20 @@ set undodir=~/.vim/undodir
 set undofile
 set incsearch
 " set paste
+let mapleader = " "
+let g:node_host_prog = '.nvm/versions/node/v12.17.0/bin/neovim-node-host' 
+" let g:ctrlp_use_caching = 0
 
-set colorcolumn=80
-highlight ColorColumn ctermbg=0 guibg=lightgrey
+" Commands
+"autocmd FileType python nnoremap <buffer> <F9> :exec '!clear; python3' shellescape(@%, 1)<cr>
+" Automatic Recompiling
+"autocmd BufWritePost config.h,config.def.h !sudo make install
 
+"Commenting
+nmap <C-_> <Plug>NERDCommenterToggle
+vmap <C-_> <Plug>NERDCommenterToggle<CR>gv
+
+" Plugins
 call plug#begin('~/.vim/plugged')
 
 Plug 'morhetz/gruvbox'
@@ -38,9 +54,13 @@ Plug 'rrethy/vim-illuminate'
 Plug 'jiangmiao/auto-pairs'
 Plug 'vim-airline/vim-airline'
 Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
+" FZF
 Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
 Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-rooter'
+" Latex
 Plug 'lervag/vimtex'
+" Snippets
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'preservim/nerdcommenter'
@@ -53,28 +73,41 @@ Plug 'unblevable/quick-scope'
 
 call plug#end()
 
+" Vim Plug
+nnoremap <leader>pin :w <bar> :source $MYVIMRC <bar> :PlugInstall<CR> 
+nnoremap <leader>pcl :w <bar> :source $MYVIMRC <bar> :PlugClean<CR>
+
+" Prettier
+" Trigger a highlight in the appropriate direction when pressing these keys:
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+" Trigger a highlight only when pressing f and F.
+let g:qs_highlight_on_keys = ['f', 'F']
 colorscheme gruvbox
 set background=dark
+set colorcolumn=80
+highlight ColorColumn ctermbg=0 guibg=lightgrey
 
-if executable('rg')
-    let g:rg_derive_root='true'
-endif
+" Version control
+nmap <leader>gs :G<CR>
+nmap <leader>gf :diffget //3<CR>
+nmap <leader>gj :diffget //2<CR>
+nnoremap <leader>gcom :Gcommit<CR>
+nnoremap <leader>gpl :Gpull<CR>
+nnoremap <leader>gpu :Gpush<CR>
 
-" =========================================="
-"           Automatic Recompiling           "
-" =========================================="
-"autocmd BufWritePost config.h,config.def.h !sudo make install
-
-
-" let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-let mapleader = " "
-" let g:netrw_browse_split=2
-" let g:netrw_banner = 0
-" let g:netrw_winsize = 25
-let g:node_host_prog = '.nvm/versions/node/v12.17.0/bin/neovim-node-host' 
-" let g:ctrlp_use_caching = 0
-let g:Tex_MultipleCompileFormats='pdf,bib,pdf'
-
+" Movement
+nnoremap <silent> <esc><esc> :nohlsearch<CR>
+"if executable('rg')
+    "let g:rg_derive_root='true'
+"endif
+nnoremap <C-f> <Esc><Esc>:BLines!<CR>
+"nnoremap <c-p> :FZF<CR>
+nnoremap <c-p> :call fzf#vim#gitfiles('.', fzf#vim#with_preview('right'))<CR>
+nnoremap <C-g> <Esc><Esc>:BCommits!<CR>
+nnoremap <leader>f :Ranger<CR>
+nnoremap <silent> <leader>gd :YcmCompleter GoTo<CR>
+nnoremap <silent> <leader>gf :YcmCompleter FixIt<CR>
 noremap <leader>wl :vnew<CR><C-w>L
 noremap <leader>wh :vnew<CR>
 noremap <leader>wj :new<CR><C-w>J
@@ -86,35 +119,14 @@ noremap <C-h> <C-w>h
 nnoremap <leader>u :UndotreeShow<CR>
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 nnoremap <leader>ps :Rg<SPACE>
-nnoremap <silent> <leader>+ :vertical resize +5<CR>
-nnoremap <silent> <leader>- :vertical resize -5<CR>
- noremap <Tab><Tab> :NERDTreeToggle<CR>
-nmap <C-_> <Plug>NERDCommenterToggle
-vmap <C-_> <Plug>NERDCommenterToggle<CR>gv
-nnoremap <leader>f :Ranger<CR>
+command! -bang -nargs=* -complete=file Rg call fzf#vim#grep('rg --files --hidden --follow --smart-case --glob "!.git/*" --glob "!node_modules/*"' . <q-args>, 1, fzf#vim#with_preview(), <bang>0)
+noremap <Tab><Tab> :NERDTreeToggle<CR>
+
+" Latex
 nmap <F12> :LLPStartPreview<cr>
-nnoremap <leader>gcom :Gcommit<CR>
-nnoremap <leader>gpl :Gpull<CR>
-nnoremap <leader>gpu :Gpush<CR>
-nnoremap <silent> <esc><esc> :nohlsearch<CR>
+let g:Tex_MultipleCompileFormats='pdf,bib,pdf'
 
-"Git fugitive
-nmap <leader>gs :G<CR>
-nmap <leader>gf :diffget //3<CR>
-nmap <leader>gj :diffget //2<CR>
-
-" YCM
-nnoremap <silent> <leader>gd :YcmCompleter GoTo<CR>
-nnoremap <silent> <leader>gf :YcmCompleter FixIt<CR>
-
-" Vim Plug
-nnoremap <leader>pin :w <bar> :source $MYVIMRC <bar> :PlugInstall<CR> 
-nnoremap <leader>pcl :w <bar> :source $MYVIMRC <bar> :PlugClean<CR>
-
-" Run command
-autocmd FileType python nnoremap <buffer> <F9> :exec '!clear; python3' shellescape(@%, 1)<cr>
-
-" Lines to save ftext folding
+" Folding
 augroup AutoSaveFolds
   autocmd!
   " view files are about 500 bytes
@@ -124,17 +136,7 @@ augroup AutoSaveFolds
   autocmd BufWinEnter ?* silent! loadview
 augroup end
 
-" ================================="
-"               FZF                "
-" ================================="
-nnoremap <C-f> <Esc><Esc>:BLines!<CR>
-"nnoremap <c-p> :FZF<CR>
-nnoremap <c-p> :call fzf#vim#files('.', fzf#vim#with_preview('right'))<CR>
-nnoremap <C-g> <Esc><Esc>:BCommits!<CR>
-
-" ================================="
-"           UltiSnips              "
-" ================================="
+" Snippets
 " make YCM compatible with UltiSnips (using supertab)
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
@@ -148,13 +150,3 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:tex_flavor = "latex"
 let g:UltiSnipsEditSplit="vertical"
 nnoremap <leader>es :UltiSnipsEdit<CR>
-
-" ================================="
-"           Quickscope             "
-" ================================="
-
-" Trigger a highlight in the appropriate direction when pressing these keys:
-let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-
-" Trigger a highlight only when pressing f and F.
-let g:qs_highlight_on_keys = ['f', 'F']

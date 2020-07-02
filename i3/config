@@ -177,6 +177,7 @@ bindsym $mod+Control+s move workspace to output $secondMonitor
 #bindsym $mod+Control+k move workspace to output up
 
 
+for_window [class="Yad"] floating enable
 assign [class="zoom"] $workspace9
 
 # reload the configuration file
@@ -184,8 +185,8 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Shift+e exec i3-msg exit
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+#bindsym $mod+Shift+e exec i3-msg exit
 # lock i3
 #bindsym $mod+Ctrl+l exec i3lock --color "$bg-color"
 #bindsym $mod+Ctrl+l exec source ~/scripts/lock.sh
@@ -235,6 +236,7 @@ set $urgent-bg-color     #E53935
 bar {
         #status_command i3status
         status_command i3blocks -c ~/.config/i3/i3blocks.conf
+        #status_command SCRIPT_DIR=~/.config/i3/i3blocks-contrib i3blocks
         position top
         #font pango:DejaVu Sans Mono 10
         font pango:$FONT
