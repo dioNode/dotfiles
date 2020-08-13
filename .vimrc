@@ -5,38 +5,6 @@
  "| |__| | | (_) | | | | \__ \    \  /  | | | | | | | | | (__ 
  "|_____/|_|\___/|_| |_| |___/     \/   |_|_| |_| |_|_|  \___|
 
-" Settings
-syntax on
-filetype plugin indent on
-set noerrorbells
-set tabstop=4 softtabstop=4
-set shiftwidth=4
-set expandtab
-set smartindent
-set nu
-set cursorline
-set relativenumber
-set nowrap
-set smartcase
-set noswapfile
-set nobackup
-set undodir=~/.vim/undodir
-set undofile
-set incsearch
-" set paste
-let mapleader = " "
-let g:node_host_prog = '.nvm/versions/node/v12.17.0/bin/neovim-node-host' 
-" let g:ctrlp_use_caching = 0
-
-" Commands
-"autocmd FileType python nnoremap <buffer> <F9> :exec '!clear; python3' shellescape(@%, 1)<cr>
-" Automatic Recompiling
-"autocmd BufWritePost config.h,config.def.h !sudo make install
-
-"Commenting
-nmap <C-_> <Plug>NERDCommenterToggle
-vmap <C-_> <Plug>NERDCommenterToggle<CR>gv
-
 " Plugins
 call plug#begin('~/.vim/plugged')
 
@@ -70,12 +38,49 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'xuhdev/vim-latex-live-preview', {'for': 'tex'}
 Plug 'unblevable/quick-scope'
+Plug 'taketwo/vim-ros'
+Plug 'majutsushi/tagbar'
 
 call plug#end()
 
 " Vim Plug
 nnoremap <leader>pin :w <bar> :source $MYVIMRC <bar> :PlugInstall<CR> 
 nnoremap <leader>pcl :w <bar> :source $MYVIMRC <bar> :PlugClean<CR>
+
+" Settings
+syntax on
+filetype plugin indent on
+set clipboard+=unnamedplus
+set noerrorbells
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+set nu
+set cursorline
+set relativenumber
+set nowrap
+set smartcase
+set noswapfile
+set directory=~/.vim/tmp
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+set incsearch
+" set paste
+let mapleader = " "
+let g:node_host_prog = '.nvm/versions/node/v12.17.0/bin/neovim-node-host' 
+" let g:ctrlp_use_caching = 0
+
+" Commands
+"autocmd FileType python nnoremap <buffer> <F9> :exec '!clear; python3' shellescape(@%, 1)<cr>
+" Automatic Recompiling
+"autocmd BufWritePost config.h,config.def.h !sudo make install
+map <Leader>tt :new term://zsh<CR><C-w>J
+
+"Commenting
+nmap <C-_> <Plug>NERDCommenterToggle
+vmap <C-_> <Plug>NERDCommenterToggle<CR>gv
 
 " Prettier
 " Trigger a highlight in the appropriate direction when pressing these keys:
@@ -121,8 +126,10 @@ nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 nnoremap <leader>ps :Rg<SPACE>
 command! -bang -nargs=* -complete=file Rg call fzf#vim#grep('rg --files --hidden --follow --smart-case --glob "!.git/*" --glob "!node_modules/*"' . <q-args>, 1, fzf#vim#with_preview(), <bang>0)
 noremap <Tab><Tab> :NERDTreeToggle<CR>
+nmap <F8> :TagbarToggle<CR>
 
 " Latex
+autocmd bufRead,BufNewFile *.tex set filetype=tex
 nmap <F12> :LLPStartPreview<cr>
 let g:Tex_MultipleCompileFormats='pdf,bib,pdf'
 
@@ -150,3 +157,6 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:tex_flavor = "latex"
 let g:UltiSnipsEditSplit="vertical"
 nnoremap <leader>es :UltiSnipsEdit<CR>
+
+" Spell checking
+map <leader>s :setlocal spell! spelllang=en_au<CR>

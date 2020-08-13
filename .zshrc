@@ -115,6 +115,7 @@ alias q="exit"
 alias f="ranger"
 alias udot="cp -r /home/dionode/{.zshrc,.vimrc,.tmux.conf,.config/i3} /home/dionode/dotfiles/;
     cd ~/dotfiles; git add .; git status"
+alias vi="nvim"
 alias vim="nvim"
 
 # Zsh auto accept with control space
@@ -151,3 +152,7 @@ unset __conda_setup
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+export GOPATH=${HOME}/go
+export PATH=/usr/local/go/bin:${PATH}:${GOPATH}/bin
+
+export PYTHONPATH=/home/dionode/Documents/Thesis/badgr/src:$PYTHONPATH
