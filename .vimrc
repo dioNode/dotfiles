@@ -108,7 +108,7 @@ nnoremap <silent> <esc><esc> :nohlsearch<CR>
 "endif
 nnoremap <C-f> <Esc><Esc>:BLines!<CR>
 "nnoremap <c-p> :FZF<CR>
-nnoremap <c-p> :call fzf#vim#gitfiles('.', fzf#vim#with_preview('right'))<CR>
+nnoremap <c-p> :call fzf#vim#files('.', fzf#vim#with_preview('right'))<CR>
 nnoremap <C-g> <Esc><Esc>:BCommits!<CR>
 nnoremap <leader>f :Ranger<CR>
 nnoremap <silent> <leader>gd :YcmCompleter GoTo<CR>
