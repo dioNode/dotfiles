@@ -11,23 +11,23 @@ call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-fugitive'
-Plug 'leafgarland/typescript-vim'
-Plug 'vim-utils/vim-man'
+Plug 'airblade/vim-gitgutter'
+"Plug 'vim-utils/vim-man'
 Plug 'lyuts/vim-rtags'
-"Plug 'kien/ctrlp.vim'
 Plug 'valloric/youcompleteme',{'do':'./install.py'}
 Plug 'mbbill/undotree'
 Plug 'scrooloose/nerdtree'
 Plug 'rrethy/vim-illuminate'
 Plug 'jiangmiao/auto-pairs'
 Plug 'vim-airline/vim-airline'
-Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
+"Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 " FZF
 Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'
 " Latex
 Plug 'lervag/vimtex'
+Plug 'xuhdev/vim-latex-live-preview', {'for': 'tex'}
 " Snippets
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
@@ -35,11 +35,12 @@ Plug 'preservim/nerdcommenter'
 Plug 'rbgrouleff/bclose.vim' " Ranger dependance for neovim
 Plug 'francoiscabrol/ranger.vim' " Ranger
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-fugitive'
-Plug 'xuhdev/vim-latex-live-preview', {'for': 'tex'}
 Plug 'unblevable/quick-scope'
 Plug 'taketwo/vim-ros'
 Plug 'majutsushi/tagbar'
+" Flutter
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'thosakwe/vim-flutter'
 
 call plug#end()
 
@@ -50,7 +51,7 @@ nnoremap <leader>pcl :w <bar> :source $MYVIMRC <bar> :PlugClean<CR>
 " Settings
 syntax on
 filetype plugin indent on
-set clipboard+=unnamedplus
+"set clipboard+=unnamedplus
 set noerrorbells
 set tabstop=4 softtabstop=4
 set shiftwidth=4
@@ -94,12 +95,21 @@ set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 " Version control
-nmap <leader>gs :G<CR>
-nmap <leader>gf :diffget //3<CR>
-nmap <leader>gj :diffget //2<CR>
-nnoremap <leader>gcom :Gcommit<CR>
-nnoremap <leader>gpl :Gpull<CR>
-nnoremap <leader>gpu :Gpush<CR>
+"nmap <leader>gs :G<CR>
+"nmap <leader>gf :diffget //3<CR>
+"nmap <leader>gj :diffget //2<CR>
+"nnoremap <leader>gcom :Gcommit<CR>
+"nnoremap <leader>gpl :Gpull<CR>
+"nnoremap <leader>gpu :Gpush<CR>
+" Git Gutter
+highlight GitGutterAdd guifg=#009900 ctermfg=Green
+highlight GitGutterChange guifg=#bbbb00 ctermfg=Yellow
+highlight GitGutterDelete guifg=#ff2222 ctermfg=Red
+nmap ) <Plug>(GitGutterNextHunk)
+nmap ( <Plug>(GitgutterPrevHunk)
+let g:gitgutter_enabled = 1
+let g:gitgutter_map_keys = 0
+
 
 " Movement
 nnoremap <silent> <esc><esc> :nohlsearch<CR>
@@ -122,8 +132,8 @@ noremap <C-k> <C-w>k
 noremap <C-j> <C-w>j
 noremap <C-h> <C-w>h
 nnoremap <leader>u :UndotreeShow<CR>
-nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
-nnoremap <leader>ps :Rg<SPACE>
+"nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
+"nnoremap <leader>ps :Rg<SPACE>
 command! -bang -nargs=* -complete=file Rg call fzf#vim#grep('rg --files --hidden --follow --smart-case --glob "!.git/*" --glob "!node_modules/*"' . <q-args>, 1, fzf#vim#with_preview(), <bang>0)
 noremap <Tab><Tab> :NERDTreeToggle<CR>
 nmap <F8> :TagbarToggle<CR>
@@ -160,3 +170,7 @@ nnoremap <leader>es :UltiSnipsEdit<CR>
 
 " Spell checking
 map <leader>s :setlocal spell! spelllang=en_au<CR>
+
+" Flutter
+let dart_html_in_strong=v:true
+let g:flutter_hot_reload_on_save=1

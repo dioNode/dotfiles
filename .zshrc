@@ -1,5 +1,5 @@
 #if [ "$TMUX" = "" ]; then tmux new -A -s main; fi
-if [ "$TMUX" = "" ]; then tmux; fi
+#if [ "$TMUX" = "" ]; then tmux; fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -123,8 +123,8 @@ alias vim="nvim"
 bindkey '^ ' autosuggest-accept
 
 # Thesis ros
-source /opt/ros/melodic/setup.zsh
-source /opt/wildcat/setup.bash
+# source /opt/ros/melodic/setup.zsh
+# source /opt/wildcat/setup.bash
                                                                                 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -134,6 +134,10 @@ export NVM_DIR=~/.nvm
 
 # Flutter
 export PATH="$PATH:/home/dionode/Programs/flutter/bin"
+
+# Cuda
+export PATH=/usr/local/cuda/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -156,4 +160,11 @@ unset __conda_setup
 export GOPATH=${HOME}/go
 export PATH=/usr/local/go/bin:${PATH}:${GOPATH}/bin
 
-export PYTHONPATH=/home/dionode/Documents/Thesis/badgr/src:$PYTHONPATH
+#export PYTHONPATH=/home/dionode/Documents/Thesis/badgr/src:$PYTHONPATH
+export PYTHONPATH=/home/dionode/Documents/Thesis/Reza/badgr/src:$PYTHONPATH
+export PYTHONPATH=/home/dionode/Documents/Thesis/Reza/our_badgr/src/titan_move_sim/src/titan_move_sim/src:$PYTHONPATH
+export PYTHONPATH=/home/dionode/Documents/Thesis/jackal-master/src:$PYTHONPATH
+
+# Davinci Resolve
+export QT_DEVICE_PIXEL_RATIO=2
+export QT_AUTO_SCREEN_SCALE_FACTOR=true
