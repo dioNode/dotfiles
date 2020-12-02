@@ -1,12 +1,11 @@
 #if [ "$TMUX" = "" ]; then tmux new -A -s main; fi
 #if [ "$TMUX" = "" ]; then tmux; fi
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+#fi
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -19,7 +18,8 @@ export ZSH="/home/dionode/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="bureau"
+#ZSH_THEME="random"
 
 # Default settings
 # Uncomment the following line to use case-sensitive completion.
@@ -93,8 +93,6 @@ source $ZSH/oh-my-zsh.sh
    export EDITOR='nvim'
  fi
 
- #export TERM='i3-sensible-terminal'
-
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -110,11 +108,9 @@ alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias {vimconf,vimconfig}="nvim ~/.vimrc"
 alias {bashconf,bashconfig}="nvim ~/.bashrc"
 alias {tmuxconf,tmuxconfig}="nvim ~/.tmux.conf"
-alias {i3conf,i3config}="nvim ~/.config/i3/config"
-alias {barconf,barconfig}="nvim ~/.config/i3/i3blocks.conf"
 alias q="exit"
 alias f="ranger"
-alias udot="cp -r /home/dionode/{.zshrc,.vimrc,.tmux.conf,.config/i3} /home/dionode/dotfiles/;
+alias udot="cp -r /home/dionode/{.zshrc,.vimrc,.tmux.conf} /home/dionode/dotfiles/;
     cd ~/dotfiles; git add .; git status"
 alias vi="nvim"
 alias vim="nvim"
@@ -122,10 +118,6 @@ alias vim="nvim"
 # Zsh auto accept with control space
 bindkey '^ ' autosuggest-accept
 
-# Thesis ros
-# source /opt/ros/melodic/setup.zsh
-# source /opt/wildcat/setup.bash
-                                                                                
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # NVM
@@ -155,16 +147,9 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+#[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 export GOPATH=${HOME}/go
 export PATH=/usr/local/go/bin:${PATH}:${GOPATH}/bin
 
-#export PYTHONPATH=/home/dionode/Documents/Thesis/badgr/src:$PYTHONPATH
-export PYTHONPATH=/home/dionode/Documents/Thesis/Reza/badgr/src:$PYTHONPATH
-export PYTHONPATH=/home/dionode/Documents/Thesis/Reza/our_badgr/src/titan_move_sim/src/titan_move_sim/src:$PYTHONPATH
-export PYTHONPATH=/home/dionode/Documents/Thesis/jackal-master/src:$PYTHONPATH
-
-# Davinci Resolve
-export QT_DEVICE_PIXEL_RATIO=2
-export QT_AUTO_SCREEN_SCALE_FACTOR=true
+#source ~/powerlevel10k/powerlevel10k.zsh-theme
