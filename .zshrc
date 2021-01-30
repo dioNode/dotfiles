@@ -102,7 +102,6 @@ source $ZSH/oh-my-zsh.sh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-# Example aliases
 alias {zshconf,zshconfig}="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias {vimconf,vimconfig}="nvim ~/.vimrc"
@@ -115,17 +114,12 @@ alias udot="cp -r /home/dionode/{.zshrc,.vimrc,.tmux.conf} /home/dionode/dotfile
 alias vi="nvim"
 alias vim="nvim"
 
-# Zsh auto accept with control space
-bindkey '^ ' autosuggest-accept
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # NVM
 export NVM_DIR=~/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 # Flutter
-export PATH="$PATH:/home/dionode/Programs/flutter/bin"
+export PATH="$PATH:/home/dionode/development/flutter/bin"
 
 # Cuda
 export PATH=/usr/local/cuda/bin:$PATH
@@ -146,10 +140,12 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-#[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+export PATH="/home/dionode/.local/bin/pyinstaller:$PATH"
 
-export GOPATH=${HOME}/go
-export PATH=/usr/local/go/bin:${PATH}:${GOPATH}/bin
+# Zsh auto accept with control space
+bindkey '^ ' autosuggest-accept
 
-#source ~/powerlevel10k/powerlevel10k.zsh-theme
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
+
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

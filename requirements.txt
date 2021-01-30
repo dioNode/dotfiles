@@ -1,0 +1,6 @@
+ranger
+fzf
+vim-plug
+tmux
+neovim
+zsh

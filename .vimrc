@@ -103,7 +103,6 @@ nmap ( <Plug>(GitgutterPrevHunk)
 let g:gitgutter_enabled = 1
 let g:gitgutter_map_keys = 0
 
-
 " Movement
 nnoremap <silent> <esc><esc> :nohlsearch<CR>
 "if executable('rg')
@@ -130,6 +129,7 @@ nnoremap <leader>u :UndotreeShow<CR>
 command! -bang -nargs=* -complete=file Rg call fzf#vim#grep('rg --files --hidden --follow --smart-case --glob "!.git/*" --glob "!node_modules/*"' . <q-args>, 1, fzf#vim#with_preview(), <bang>0)
 noremap <Tab><Tab> :NERDTreeToggle<CR>
 nmap <F8> :TagbarToggle<CR>
+tnoremap <Esc> <C-\><C-n>
 
 " Latex
 autocmd bufRead,BufNewFile *.tex set filetype=tex
